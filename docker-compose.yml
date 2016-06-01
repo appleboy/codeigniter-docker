@@ -10,8 +10,6 @@ services:
       - application
     expose:
       - "9000"
-    links:
-      - workspace
 
   application:
     build: ./application
@@ -66,10 +64,4 @@ services:
     volumes_from:
       - data
     ports:
-      - "6379:6379"
-
-  workspace:
-    build: ./workspace
-    volumes_from:
-      - application
-    tty: true
+      - "6378:6379"

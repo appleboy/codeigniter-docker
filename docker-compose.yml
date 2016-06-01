@@ -2,9 +2,9 @@ version: '2'
 
 services:
 
-  php-fpm:
+  php:
     build:
-      context: ./php-fpm
+      context: ./php
       dockerfile: Dockerfile-70
     volumes_from:
       - application
@@ -33,7 +33,7 @@ services:
       - "80:80"
       - "443:443"
     links:
-      - php-fpm
+      - php
 
   mysql:
     build: ./mysql

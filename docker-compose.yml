@@ -10,6 +10,8 @@ services:
       - application
     expose:
       - "9000"
+    links:
+      - mysql
 
   application:
     build: ./application

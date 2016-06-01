@@ -6,14 +6,15 @@ ADD ./codeigniter.ini /usr/local/etc/php/conf.d
 ADD ./vh-codeigniter.pool.conf /usr/local/etc/php-fpm.d/
 
 RUN apt-get update && apt-get install -y \
-    libpq-dev \
-    libmemcached-dev \
-    curl
+  libpq-dev \
+  libmemcached-dev \
+  curl
 
 # Install extensions using the helper script provided by the base image
 RUN docker-php-ext-install \
-    pdo_mysql \
-    pdo_pgsql
+  pdo_mysql \
+  pdo_pgsql \
+  mysqli
 
 RUN usermod -u 1000 www-data
 

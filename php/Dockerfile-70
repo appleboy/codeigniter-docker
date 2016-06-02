@@ -16,6 +16,10 @@ RUN docker-php-ext-install \
   pdo_pgsql \
   mysqli
 
+# Install xdebug for php 7
+RUN pecl install xdebug && \
+    docker-php-ext-enable xdebug
+
 RUN usermod -u 1000 www-data
 
 WORKDIR /var/www/codeigniter

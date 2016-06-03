@@ -23,7 +23,7 @@ services:
     volumes:
       - /var/lib/mysql
       - /var/lib/mariadb
-      - /var/lib/redis
+      - /data
 
   nginx:
     build: ./nginx

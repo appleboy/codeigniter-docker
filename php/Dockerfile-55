@@ -10,7 +10,9 @@ RUN apt-get update && apt-get install -y \
   libmemcached-dev \
   curl \
   mysql-client \
-  postgresql-client
+  postgresql-client \
+  --no-install-recommends && \
+  rm -r /var/lib/apt/lists/*
 
 # Install extensions using the helper script provided by the base image
 RUN docker-php-ext-install \

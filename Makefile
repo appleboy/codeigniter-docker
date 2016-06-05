@@ -14,3 +14,6 @@ ps:
 
 down:
 	docker-compose -p ci down
+
+test:
+	sh testing.sh

@@ -16,7 +16,7 @@ services:
   application:
     build: ./application
     volumes:
-      - ../:/var/www/codeigniter
+      - ./ci:/var/www/codeigniter
 
   data:
     build: ./data

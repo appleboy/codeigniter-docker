@@ -1,0 +1,28 @@
+sudo: true
+
+language: php
+
+php:
+  - '5.5'
+  - '5.6'
+  - '7.0'
+
+services:
+  - docker
+
+env:
+  DOCKER_COMPOSE_VERSION: 1.7.1
+
+before_install:
+  - sudo apt-get -y update
+  - sudo apt-get -y purge docker-engine
+  - sudo apt-get -y install docker-engine
+
+install:
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+
+script:
+  - sh testing.sh

@@ -19,7 +19,7 @@ docker-compose -p ci build --no-cache
 docker-compose -p ci up -d
 output "Testing CodeIgniter Web Site."
 curl -L http://127.0.0.1 > /dev/null
-cd ${CURRENT}/ci && composer require phpunit/phpunit@~4.0 --dev
+cd ${CURRENT}/ci && composer require phpunit/phpunit:~4.0 --dev
 cd ${CURRENT}/ci && git clone https://github.com/kenjis/ci-phpunit-test.git
 cd ${CURRENT}/ci && php ci-phpunit-test/install.php
 

@@ -20,7 +20,7 @@ docker-compose -p ci up -d
 output "Testing CodeIgniter Web Site."
 curl -L http://127.0.0.1 > /dev/null
 cd ${CURRENT}/ci && composer require phpunit/phpunit:~4.0 --dev
-cd ${CURRENT}/ci && composer require kenjis/ci-phpunit-test:dev-master --dev --prefer-dist
+cd ${CURRENT}/ci && composer require kenjis/ci-phpunit-test --dev --prefer-dist
 cd ${CURRENT}/ci && php vendor/kenjis/ci-phpunit-test/install.php
 cd ${CURRENT}/ci && git checkout remotes/origin/3.0-stable
 output "Testing CodeIgniter php unit test."

@@ -25,4 +25,4 @@ install:
   - sudo mv docker-compose /usr/local/bin
 
 script:
-  - sh testing.sh
+  - make test

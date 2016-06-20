@@ -67,3 +67,9 @@ services:
       - data
     ports:
       - "6378:6379"
+
+  workspace:
+    build: ./workspace
+    volumes_from:
+      - application
+    tty: true

@@ -1,6 +1,6 @@
 FROM phusion/baseimage:latest
 
-MAINTAINER Mahmoud Zalt <mahmoud@zalt.me>
+MAINTAINER Bo-Yi Wu <appleboy.tw@gmail.com>
 
 RUN DEBIAN_FRONTEND=noninteractive
 RUN locale-gen en_US.UTF-8
@@ -51,9 +51,6 @@ RUN apt-get update && apt-get install -y --force-yes \
   nodejs-dev \
   npm
 
-# Clean up, to free some space
-RUN apt-get clean
-
 # Install gulp and bower with NPM
 RUN npm install -g \
   gulp \
@@ -70,8 +67,7 @@ RUN echo "alias phpunit='./vendor/bin/phpunit'" >> ~/.bashrc
 
 # Install Composer
 RUN curl -s http://getcomposer.org/installer | php \
-  && mv composer.phar /usr/local/bin/ \
-  && echo "alias composer='/usr/local/bin/composer.phar'" >> ~/.bashrc
+  && mv composer.phar /usr/local/bin/composer
 
 # Install mongodb extension
 RUN pecl install mongodb

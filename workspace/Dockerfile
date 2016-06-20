@@ -51,8 +51,8 @@ RUN apt-get update && apt-get install -y --force-yes \
 # Install nvm (Node Version Manager)
 RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.1/install.sh | bash
 
-# Add an alias for PHPUnit
-RUN echo "alias phpunit='./vendor/bin/phpunit'" >> ~/.bashrc
+# Add bin folder of composer to PATH.
+RUN echo "export PATH=${PATH}:/var/www/codeigniter/vendor/bin" >> ~/.bashrc
 
 # Install Composer
 RUN curl -s http://getcomposer.org/installer | php \

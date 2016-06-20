@@ -46,21 +46,10 @@ RUN apt-get update && apt-get install -y --force-yes \
   git \
   curl \
   vim \
-  nano \
-  nodejs \
-  nodejs-dev \
-  npm
+  nano
 
-# Install gulp and bower with NPM
-RUN npm install -g \
-  gulp \
-  bower
-
-# Link the global gulp to be used locally
-RUN npm link gulp
-
-# Add a symbolic link for Node
-RUN ln -s /usr/bin/nodejs /usr/bin/node
+# Install nvm (Node Version Manager)
+RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.1/install.sh | bash
 
 # Add an alias for PHPUnit
 RUN echo "alias phpunit='./vendor/bin/phpunit'" >> ~/.bashrc
@@ -72,6 +61,15 @@ RUN curl -s http://getcomposer.org/installer | php \
 # Install mongodb extension
 RUN pecl install mongodb
 RUN echo "extension=mongodb.so" >> /etc/php/7.0/cli/php.ini
+
+ENV NVM_DIR=/root/.nvm
+
+# Install stable node
+RUN . ~/.nvm/nvm.sh && \
+  nvm install stable && \
+  nvm use stable && \
+  nvm alias stable && \
+  npm install -g gulp bower
 
 # Source the bash
 RUN . ~/.bashrc

@@ -35,6 +35,7 @@ RUN apt-get update && apt-get install -y --force-yes \
   php7.0-zip \
   php7.0-memcached \
   php7.0-gd \
+  php7.0-xdebug \
   php-dev \
   libcurl4-openssl-dev \
   libedit-dev \
@@ -51,12 +52,18 @@ RUN apt-get update && apt-get install -y --force-yes \
 # Install nvm (Node Version Manager)
 RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.1/install.sh | bash
 
+# remove load xdebug extension
+RUN sed -i 's/^/;/g' /etc/php/7.0/cli/conf.d/20-xdebug.ini
+
 # Add bin folder of composer to PATH.
 RUN echo "export PATH=${PATH}:/var/www/codeigniter/vendor/bin" >> ~/.bashrc
 
 # Install Composer
 RUN curl -s http://getcomposer.org/installer | php \
   && mv composer.phar /usr/local/bin/composer
+
+# Load xdebug Zend extension with phpunit command
+RUN echo "alias phpunit='php -dzend_extension=xdebug.so /var/www/codeigniter/vendor/bin/phpunit'" >> ~/.bashrc
 
 # Install mongodb extension
 RUN pecl install mongodb

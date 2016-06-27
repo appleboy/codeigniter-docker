@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y \
   libpng12-dev \
   libfreetype6-dev \
   libssl-dev \
+  libmcrypt-dev \
   --no-install-recommends && \
   rm -r /var/lib/apt/lists/*
 
@@ -30,7 +31,8 @@ RUN docker-php-ext-install \
   pdo_mysql \
   pdo_pgsql \
   mysqli \
-  gd
+  gd \
+  mcrypt
 
 # Install xdebug
 RUN pecl install xdebug && \

@@ -14,8 +14,12 @@ RUN apt-get update && apt-get install -y \
   libpng12-dev \
   libfreetype6-dev \
   libssl-dev \
+  libmcrypt-dev \
   --no-install-recommends && \
   rm -r /var/lib/apt/lists/*
+
+# Install mongodb driver
+RUN pecl install mongodb
 
 # configure gd library
 RUN docker-php-ext-configure gd \
@@ -27,10 +31,8 @@ RUN docker-php-ext-install \
   pdo_mysql \
   pdo_pgsql \
   mysqli \
-  gd
-
-# Install mongodb driver
-RUN pecl install mongodb
+  gd \
+  mcrypt
 
 # Install xdebug
 RUN pecl install xdebug && \

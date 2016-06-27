@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
   postgresql-client \
   libpng12-dev \
   libfreetype6-dev \
+  libssl-dev \
   --no-install-recommends && \
   rm -r /var/lib/apt/lists/*
 
@@ -27,6 +28,9 @@ RUN docker-php-ext-install \
   pdo_pgsql \
   mysqli \
   gd
+
+# Install mongodb driver
+RUN pecl install mongodb
 
 # Install xdebug
 RUN pecl install xdebug && \
